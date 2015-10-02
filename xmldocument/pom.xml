@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.mwvb.xml</groupId>
+	<groupId>de.mwvb</groupId>
 	<artifactId>xmldocument</artifactId>
 	<version>0.1.0</version>
 	<name>XMLDocument</name>
 	<packaging>jar</packaging>
 	<description>DOM4J wrapper for easy use</description>
-	<url>https://github.com/traviatasoftware/xmldocument</url>
+	<url>https://github.com/traviatasoftware/xmldocument/blob/master/README.md</url>
 	<scm>
 		<url>https://github.com/traviatasoftware/xmldocument</url>
 	</scm>
