@@ -3,9 +3,21 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.mwvb.xml</groupId>
 	<artifactId>xmldocument</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>XMLDocument</name>
+	<packaging>jar</packaging>
 	<description>DOM4J wrapper for easy use</description>
+	<url>https://github.com/traviatasoftware/xmldocument</url>
+	<scm>
+		<url>https://github.com/traviatasoftware/xmldocument</url>
+	</scm>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<build>
 		<plugins>
 			<plugin>
