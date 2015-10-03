@@ -1,0 +1,114 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = '0.1.0'
+group = 'de.mwvb'
+archivesBaseName = 'xmldocument'
+project.description = 'DOM4J wrapper for easy use'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+sourceSets {
+	main.java.srcDir      'src/main/java'
+	main.resources.srcDir 'src/main/java'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'dom4j:dom4j:1.6.1'
+	compile 'jaxen:jaxen:1.1.4'
+}
+
+// http://central.sonatype.org/pages/gradle.html
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+signing {
+	sign configurations.archives
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+				// gradle.properties in users/.gradle dir ! 
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+			pom.project {
+				name 'xmldocument'
+				packaging 'jar'
+				description 'DOM4J wrapper for easy use'
+				url 'https://github.com/traviatasoftware/xmldocument/blob/master/README.md'
+				
+				scm {
+					connection 'https://github.com/traviatasoftware/xmldocument'
+					developerConnection 'https://github.com/traviatasoftware/xmldocument'
+					url 'https://github.com/traviatasoftware/xmldocument'
+				}
+		  
+				licenses {
+					license {
+						name 'Apache License, Version 2.0'
+						url  'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+				
+				developers {
+					developer {
+						id 'traviatasoftware'
+						name  'Marcus Warm'
+						email 'juni@mwvb.de'
+					}
+				}
+			}
+		}
+	}
+}
+
+signArchives.onlyIf { project.hasProperty('mavenupload') }
+uploadArchives.onlyIf { project.hasProperty('mavenupload') }
+
+/*
+apply plugin: 'jacoco'
+
+jacoco {
+	toolVersion = '0.7.1.201405082137'
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled true
+	}
+}
+
+test {
+	jacoco {
+		append = false
+		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+		classDumpFile = file("$buildDir/jacoco/classpathdumps")
+	}
+}
+*/
