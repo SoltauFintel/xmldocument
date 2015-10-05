@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-version = '0.1.0'
+version = '0.2.0-SNAPSHOT'
 group = 'de.mwvb'
 archivesBaseName = 'xmldocument'
 project.description = 'DOM4J wrapper for easy use'
@@ -12,6 +12,8 @@ targetCompatibility = 1.6
 sourceSets {
 	main.java.srcDir      'src/main/java'
 	main.resources.srcDir 'src/main/java'
+	test.java.srcDir      'src/test/java'
+	test.resources.srcDir 'src/test/java'
 }
 
 repositories {
@@ -21,6 +23,7 @@ repositories {
 dependencies {
 	compile 'dom4j:dom4j:1.6.1'
 	compile 'jaxen:jaxen:1.1.4'
+	testCompile 'junit:junit:4.12'
 }
 
 // http://central.sonatype.org/pages/gradle.html
