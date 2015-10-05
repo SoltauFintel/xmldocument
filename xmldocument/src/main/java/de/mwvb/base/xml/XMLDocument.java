@@ -8,9 +8,12 @@ import java.net.URL;
 import java.util.List;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
+import org.dom4j.io.DOMReader;
+import org.dom4j.io.DOMWriter;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
@@ -109,6 +112,16 @@ public class XMLDocument {
 		final char slash = '/';
 		final String path = clazz.getPackage().getName().replace('.', slash);
 		loadResource(slash + path + slash + resourceName);
+	}
+	
+	/**
+	 * org.w3c.dom.Document to XMLDocument constructor
+	 * 
+	 * @param w3cDoc org.w3c.dom.Document
+	 */
+	public XMLDocument(final org.w3c.dom.Document w3cDoc) {
+		final DOMReader reader = new DOMReader();
+		doc = reader.read(w3cDoc);
 	}
 
 	/**
@@ -309,5 +322,15 @@ public class XMLDocument {
 	@Override
 	public String toString() {
 		return getXML();
+	}
+
+	/**
+	 * Converts this DOM4J-based Document to org.w3c.dom.Document
+	 * 
+	 * @return org.w3c.dom.Document
+	 * @throws DocumentException
+	 */
+	public org.w3c.dom.Document getW3CDocument() throws DocumentException {
+		return new DOMWriter().write(doc);
 	}
 }
