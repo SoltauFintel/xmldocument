@@ -77,7 +77,7 @@ public class XMLDocument {
 			} catch (Throwable e) {
 				throw new RuntimeException("Error loading XML file '" + fileName + "'!", e);
 			}
-		} else if(isResource) {
+		} else if (isResource) {
 			loadResource(fileName);
 		} else {
 			loadFile(fileName);
@@ -165,10 +165,10 @@ public class XMLDocument {
 	/**
 	 * Load XML file
 	 * 
-	 * @param resourceName
+	 * @param resourceName name of resource file, incl. path
 	 */
 	public void loadResource(final String resourceName) {
-		final InputStream stream = getClass().getResourceAsStream(resourceName);
+		InputStream stream = getClass().getResourceAsStream(resourceName);
 		if (stream == null) {
 			throw new RuntimeException("Error loading resource file '" + resourceName + "'!");
 		}
@@ -328,7 +328,7 @@ public class XMLDocument {
 	 * Converts this DOM4J-based Document to org.w3c.dom.Document
 	 * 
 	 * @return org.w3c.dom.Document
-	 * @throws DocumentException
+	 * @throws DocumentException -
 	 */
 	public org.w3c.dom.Document getW3CDocument() throws DocumentException {
 		return new DOMWriter().write(doc);

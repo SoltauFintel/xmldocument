@@ -3,6 +3,9 @@
 	<target name="build">
 		<gradle task="build"/>
 	</target>
+	<target name="clean build">
+		<gradle task="clean build"/>
+	</target>
 	<target name="upload to MavenCentral">
 		<gradle task="build uploadArchives -Pmavenupload"/>
 	</target>

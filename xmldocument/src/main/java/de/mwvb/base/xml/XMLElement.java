@@ -15,6 +15,7 @@ public interface XMLElement {
 	/**
 	 * Returns value of given attribute.
 	 * 
+	 * @param attributeName name of the attribute
 	 * @return content of attribute
 	 * <br>- or "" if attributeName was not found
 	 * <br>Return value will never be null.
@@ -29,12 +30,16 @@ public interface XMLElement {
 	List<XMLElement> getChildren();
 
 	/**
-	 * Returns name of element.
+	 * Returns name of this element.
+	 * 
+	 * @return tag name
 	 */
 	String getName();
 
 	/**
-	 * @param name new element name
+	 * Changes name of this element.
+	 * 
+	 * @param name new tag name
 	 */
 	void setName(String name);
 
@@ -50,28 +55,41 @@ public interface XMLElement {
 	 * Throws exception if index is wrong.
 	 * 
 	 * @param index attribute index from 0
+	 * @return attribute name
 	 */
 	String getAttributeName(int index);
 	
 	/**
-	 * Sets value of given attribute.
+	 * Sets value of given attribute. If value is null the attribute is removed.
+	 * 
+	 * @param attributeName attribute name
+	 * @param value new attribute value
 	 */
 	void setValue(String attributeName, String value);
 	
 	/**
 	 * Sets value of given attribute. If value is null there will be no operation.
+	 * 
+	 * @param attributeName attribute name
+	 * @param value new attribute value
 	 */
 	void setValueIfNotNull(String attributeName, String value);
 	
 	/**
 	 * Sets multi line value of given attribute.
-	 * <p>This removes all "\r" and translates all "\n" to NEWLINE.
+	 * 
+	 * @param attributeName attribute name
+	 * @param multiLineValue attribute value with all "\r" removed and all "\n" translated to NEWLINE
+	 * @deprecated This method could be removed in a future release. New code should not use it any more.
 	 */
 	void setMultiLineValue(String attributeName, String multiLineValue);
 	
 	/**
 	 * Returns multi line value of given attribute.
-	 * <p>This translates all NEWLINE to "\n".
+	 * 
+	 * @param attributeName attribute name
+	 * @return attribute value with all NEWLINE translated to "\n"
+	 * @deprecated This method could be removed in a future release. New code should not use it any more.
 	 */
 	String getMultiLineValue(String attributeName);
 	
@@ -106,22 +124,27 @@ public interface XMLElement {
 
 	/**
 	 * Sets inner text of element.
+	 * 
+	 * @param text inner text, must not be null
 	 */
 	void setText(String text);
 
 	/**
-	 * Creates a new XML element with given element name.
-	 * The new XML element will be appended to this element.
+	 * Creates a new element with given element name.
+	 * The new element will be appended to this element.
 	 * 
+	 * @param elementName name of new element
 	 * @return new XMLElement
 	 */
 	XMLElement add(String elementName);
 
 	/**
-	 * Creates a new XML element with given element name and given inner text.
-	 * The new XML element will be appended to this element.
+	 * Creates a new element with given element name and given inner text.
+	 * The new element will be appended to this element.
 	 * <p>This is a combination of add(elementName) and setText(text).
 	 * 
+	 * @param elementName name of new element
+	 * @param text inner text, must not be null
 	 * @return new XMLElement
 	 */
 	XMLElement add(String elementName, String text);
@@ -130,6 +153,9 @@ public interface XMLElement {
 	 * Returns an array of all values of the given attribute of all child elements.
 	 * <br>If an child element has not the attribute the value of "" will be added
 	 * to the returned array.
+	 * 
+	 * @param attributeName attribute name
+	 * @return list of attribute values of all child elements
 	 */
 	List<String> getArray(String attributeName);
 
@@ -137,21 +163,24 @@ public interface XMLElement {
 	 * Returns a map of all attribute name/value pairs of this element.
 	 * <br>There is no special order of the map members.
 	 * <br>Inner text and attributes of child elements will not be added to the returned map.
+	 * 
+	 * @return name/value Map for all attributes of this element
 	 */
 	Map<String, String> getMap();
 	
 	/**
 	 * Appends XML String as a child to this element.
 	 * This can help to add a XML document to this XML document.
+	 * 
+	 * @param xmlString valid XML String
 	 */
 	void append(String xmlString);
 
 	/**
-	 * 
 	 * @param index is the index of the child element before the pXML element is inserted
-	 * @param pXML to be inserted XML
+	 * @param xml to be inserted XML
 	 */
-	void insertXMLBefore(int index, final String pXML);
+	void insertXMLBefore(int index, String xml);
 	
 	/**
 	 * Removes all direct child elements using element name.
@@ -173,7 +202,8 @@ public interface XMLElement {
 	/**
 	 * Inserts a new created XML element before a XML element.
 	 * 
-	 * @param beforeIndex index from 0 of the existing element 
+	 * @param beforeIndex index from 0 of the existing element
+	 * @param newElementName new element name
 	 * @return new XMLElement
 	 */
 	XMLElement insertBefore(int beforeIndex, String newElementName);
@@ -188,21 +218,26 @@ public interface XMLElement {
 
 	/**
 	 * Removes given attribute.
+	 * 
+	 * @param attributeName attribute name
 	 */
 	void removeAttribute(String attributeName);
 	
 	/**
 	 * Returns number of child elements.
+	 * 
+	 * @return number of children
 	 */
 	int getChildrenCount();
 
 	/**
-	 * @return true wenn Kindelemente vorhanden sind, sonst false
+	 * @return true if child elements exist, otherwise false
 	 */
 	boolean hasChildren();
 	
 	/**
-	 * @return true if attribute exists, otherwise false
+	 * @param attributeName attribute name
+	 * @return true if attribute exists in this element, otherwise false
 	 */
 	boolean hasAttribute(String attributeName);
 	
