@@ -4,7 +4,7 @@
 		<gradle task="build"/>
 	</target>
 	<target name="clean build">
-		<gradle task="clean build jacocoTestReport"/>
+		<gradle task="clean build"/>
 	</target>
 	<target name="jacoco">
 		<gradle task="check jacocoTestReport"/>

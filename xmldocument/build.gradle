@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-version = '0.2.0'
+version = '0.3.0-SNAPSHOT'
 group = 'de.mwvb'
 archivesBaseName = 'xmldocument'
 project.description = 'DOM4J wrapper for easy use'
@@ -93,7 +93,7 @@ uploadArchives {
 signArchives.onlyIf { project.hasProperty('mavenupload') }
 uploadArchives.onlyIf { project.hasProperty('mavenupload') }
 
-
+/*
 apply plugin: 'jacoco'
 
 jacoco {
@@ -114,4 +114,4 @@ test {
 		classDumpFile = file("$buildDir/jacoco/classpathdumps")
 	}
 }
-
+*/
