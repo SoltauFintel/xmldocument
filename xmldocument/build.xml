@@ -10,7 +10,7 @@
 		<gradle task="check jacocoTestReport"/>
 	</target>
 	<target name="upload to MavenCentral">
-		<gradle task="build uploadArchives -Pmavenupload"/>
+		<gradle task="clean build uploadArchives -Pmavenupload"/>
 	</target>
 	<target name="eclipse">
 		<gradle task="eclipse"/>
