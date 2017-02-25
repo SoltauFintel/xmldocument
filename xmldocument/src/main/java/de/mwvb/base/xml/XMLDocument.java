@@ -65,9 +65,9 @@ public class XMLDocument {
 	/**
 	 * Load XML file constructor
 	 * 
-	 * @param isResource true if it is a resource file in a package,<br/>false if it is a file in file system
+	 * @param isResource true if it is a resource file in a package,<br>false if it is a file in file system
 	 * @param fileName file name incl. path
-	 * <br/>File name can begin with "file:" or "http:". In that case the isResource option will be ignored.
+	 * <br>File name can begin with "file:" or "http:". In that case the isResource option will be ignored.
 	 */
 	public XMLDocument(final boolean isResource, final String fileName) {
 		if (fileName.startsWith("file:") || fileName.startsWith("http:")) {
@@ -274,7 +274,7 @@ public class XMLDocument {
 	 * <p>An exception will be thrown if the XPath statement is incorrect.
 	 * 
 	 * @param pXPath XPath String, e.g. "//addresses/person[@id='4711']"
-	 * <br/>The XPath String should deliver only one element.
+	 * <br>The XPath String should deliver only one element.
 	 * @return XMLElement or null if no element was found
 	 */
 	public XMLElement selectSingleNode(final String pXPath) {

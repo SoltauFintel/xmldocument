@@ -63,12 +63,12 @@ uploadArchives {
 				name 'xmldocument'
 				packaging 'jar'
 				description 'DOM4J wrapper for easy use'
-				url 'https://github.com/traviatasoftware/xmldocument/blob/master/README.md'
+				url 'https://github.com/SoltauFintel/xmldocument/blob/master/README.md'
 				
 				scm {
-					connection 'https://github.com/traviatasoftware/xmldocument'
-					developerConnection 'https://github.com/traviatasoftware/xmldocument'
-					url 'https://github.com/traviatasoftware/xmldocument'
+					connection 'https://github.com/SoltauFintel/xmldocument'
+					developerConnection 'https://github.com/SoltauFintel/xmldocument'
+					url 'https://github.com/SoltauFintel/xmldocument'
 				}
 		  
 				licenses {
@@ -80,9 +80,9 @@ uploadArchives {
 				
 				developers {
 					developer {
-						id 'traviatasoftware'
+						id 'SoltauFintel'
 						name  'Marcus Warm'
-						email 'juni@mwvb.de'
+						email 'warm@mwvb.de'
 					}
 				}
 			}

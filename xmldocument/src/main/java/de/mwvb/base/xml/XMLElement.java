@@ -94,7 +94,7 @@ public interface XMLElement {
 	 * <p>An exception will be thrown if the XPath statement is incorrect.
 	 * 
 	 * @param pXPath XPath String, e.g. "//addresses/person[@id='4711']"
-	 * <br/>The XPath String should deliver only one element.
+	 * <br>The XPath String should deliver only one element.
 	 * @return XMLElement or null if no element was found
 	 */
 	XMLElement selectSingleNode(String pXPath);
