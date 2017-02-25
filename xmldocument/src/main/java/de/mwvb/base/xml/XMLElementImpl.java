@@ -174,6 +174,27 @@ class XMLElementImpl implements XMLElement {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void insertXMLBefore(int index, final String pXML) {
+		try {
+			final Document doc = DocumentHelper.parseText(pXML);
+			Element ele = doc.getRootElement();
+			element.content().add(index, ele);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Override
+	public void removeChildren(int von, int bis) {
+		for (int i = element.elements().size() - 1; i >= 0; i--) {
+			if (i >= von && i <= bis) {
+				element.elements().remove(i);
+			}
+		}
+	}
+
 	@Override
 	public void removeChildren(final String pElementName) {
 		final List<?> list = element.selectNodes(pElementName);

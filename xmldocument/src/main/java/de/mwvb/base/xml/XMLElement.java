@@ -147,6 +147,13 @@ public interface XMLElement {
 	void append(String xmlString);
 
 	/**
+	 * 
+	 * @param index is the index of the child element before the pXML element is inserted
+	 * @param pXML to be inserted XML
+	 */
+	void insertXMLBefore(int index, final String pXML);
+	
+	/**
 	 * Removes all direct child elements using element name.
 	 * 
 	 * @param elementName Strictly speaking this is a selectNodes argument.
@@ -154,6 +161,15 @@ public interface XMLElement {
 	 */
 	void removeChildren(String elementName);
 
+	/**
+	 * Removes child elements with index startIndex to endIndex (incl.).
+	 * If you have stored the children, you must refresh that list.
+	 * 
+	 * @param startIndex 0 based index
+	 * @param endIndex 0 based index. Must not be smaller than startIndex
+	 */
+	void removeChildren(int startIndex, int endIndex);
+	
 	/**
 	 * Inserts a new created XML element before a XML element.
 	 * 
