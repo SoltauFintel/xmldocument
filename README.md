@@ -10,3 +10,13 @@ Advantages:
 * many ways to save and load XMLDocument
 * easy XPath access using selectNodes() or selectSingleNode()
 * and some more special functions.
+
+Use with Gradle:
+<pre>compile 'de.mwvb:xmldocument:0.2.0'</pre>
+
+Use with Maven:
+<pre>&lt;dependency>
+    &lt;groupId>de.mwvb&lt;/groupId>
+    &lt;artifactId>xmldocument&lt;/artifactId>
+    &lt;version>0.2.0&lt;/version>
+&lt;/dependency></pre>
