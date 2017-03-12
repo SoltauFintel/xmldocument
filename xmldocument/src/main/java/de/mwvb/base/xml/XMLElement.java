@@ -248,7 +248,7 @@ public interface XMLElement {
 
 	/**
 	 * <p>Adds CDATA node to element and sets content.</p>
-	 * <p>If cdata contains the CDATA end string "]]>" the string will be split. This function is "]]>" safe.</p>
+	 * <p>If cdata contains the CDATA end string "]]&gt;" the string will be split. This function is "]]&gt;" safe.</p>
 	 * <p>Read the CDATA content with getText()!</p>
 	 * 
 	 * @param cdata content of new CDATA node
@@ -258,8 +258,9 @@ public interface XMLElement {
 	/**
 	 * Adds a new element and sets many attributes.
 	 * 
-	 * @param elementname
+	 * @param elementname name of new element
 	 * @param attr even number of arguments, 1st argument is the attribute name, 2nd argument is the attribute value
+	 * @return new XMLElement
 	 */
 	XMLElement addWithAttributes(String elementname, String... attr);
 }
