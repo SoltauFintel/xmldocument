@@ -265,4 +265,31 @@ class XMLElementImpl implements XMLElement {
 			removeAttribute(name);
 		}
 	}
+
+	@Override
+	public void setCdata(final String cdata) {
+		final String cdataEndString = "]]>";
+		int start = 0;
+		int o = cdata.indexOf(cdataEndString);
+		while (o >= 0) {
+			o += 2;
+			element.addCDATA(cdata.substring(start, o));
+			start = o;
+
+			o = cdata.indexOf(cdataEndString, start);
+		}
+		element.addCDATA(start == 0 ? cdata : cdata.substring(start));
+	}
+
+	@Override
+	public XMLElement addWithAttributes(String elementname, String... attr) {
+		if (attr.length % 2 != 0) {
+			throw new IllegalArgumentException("The number of attr-arguments must be even!");
+		}
+		XMLElement e = add(elementname);
+		for (int i = 0; i < attr.length; i += 2) {
+			e.setValue(attr[i], attr[i + 1]);
+		}
+		return e;
+	}
 }

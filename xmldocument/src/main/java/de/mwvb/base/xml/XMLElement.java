@@ -245,4 +245,21 @@ public interface XMLElement {
 	 * Removes all empty attributes.
 	 */
 	void removeEmptyAttributes();
+
+	/**
+	 * <p>Adds CDATA node to element and sets content.</p>
+	 * <p>If cdata contains the CDATA end string "]]>" the string will be split. This function is "]]>" safe.</p>
+	 * <p>Read the CDATA content with getText()!</p>
+	 * 
+	 * @param cdata content of new CDATA node
+	 */
+	void setCdata(String cdata);
+
+	/**
+	 * Adds a new element and sets many attributes.
+	 * 
+	 * @param elementname
+	 * @param attr even number of arguments, 1st argument is the attribute name, 2nd argument is the attribute value
+	 */
+	XMLElement addWithAttributes(String elementname, String... attr);
 }
