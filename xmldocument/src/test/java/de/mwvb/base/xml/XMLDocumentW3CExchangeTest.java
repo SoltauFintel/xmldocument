@@ -24,24 +24,32 @@ public class XMLDocumentW3CExchangeTest {
 	    final DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 	    final org.w3c.dom.Document w3cDoc = builder.parse(new ByteArrayInputStream(XML.getBytes()));
 	    
-	    // test this
-	    final XMLDocument doc = new XMLDocument(w3cDoc);
-	    
-	    // verify
-	    Assert.assertEquals(XML, shorten(doc.getXML()));
+		// test this
+		final XMLDocument doc = new XMLDocument(w3cDoc);
+		try {
+
+			// verify
+			Assert.assertEquals(XML, shorten(doc.getXML()));
+		} finally {
+			doc.close();
+		}
 	}
 	
 	@Test
 	public void thisToW3c() throws Exception {
 		// prepare
 		final XMLDocument doc = new XMLDocument(XML);
+		try {
 		
-		// test this
-		final org.w3c.dom.Document w3cDoc = doc.getW3CDocument();
-
-	    // verify
-		final String result = DocumentUtils.toXML(w3cDoc);
-		Assert.assertEquals(XML, shorten(result));
+			// test this
+			final org.w3c.dom.Document w3cDoc = doc.getW3CDocument();
+	
+		    // verify
+			final String result = DocumentUtils.toXML(w3cDoc);
+			Assert.assertEquals(XML, shorten(result));
+		} finally {
+			doc.close();
+		}
 	}
 	
 	private String shorten(final String xml) {
