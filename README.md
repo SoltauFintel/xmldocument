@@ -12,11 +12,11 @@ Advantages:
 * and some more special functions.
 
 Use with Gradle:
-<pre>compile 'de.mwvb:xmldocument:0.2.1'</pre>
+<pre>compile 'de.mwvb:xmldocument:0.2.2'</pre>
 
 Use with Maven:
 <pre>&lt;dependency>
     &lt;groupId>de.mwvb&lt;/groupId>
     &lt;artifactId>xmldocument&lt;/artifactId>
-    &lt;version>0.2.1&lt;/version>
+    &lt;version>0.2.2&lt;/version>
 &lt;/dependency></pre>
