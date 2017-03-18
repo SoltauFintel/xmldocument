@@ -292,4 +292,10 @@ class XMLElementImpl implements XMLElement {
 		}
 		return e;
 	}
+	
+	@Override
+	public XMLElement getOrAdd(String elementname) {
+		XMLElement ret = selectSingleNode(elementname);
+		return ret == null ? add(elementname) : ret;
+	}
 }

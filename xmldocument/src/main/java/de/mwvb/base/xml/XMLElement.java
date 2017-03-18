@@ -263,4 +263,12 @@ public interface XMLElement {
 	 * @return new XMLElement
 	 */
 	XMLElement addWithAttributes(String elementname, String... attr);
+	
+	/**
+	 * Gets child element. If it not exist it will be created and returned.
+	 * 
+	 * @param elementname name of the child element
+	 * @return already existing or new created XMLElement
+	 */
+	XMLElement getOrAdd(String elementname);
 }
