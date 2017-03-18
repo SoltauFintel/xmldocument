@@ -1,5 +1,6 @@
 package de.mwvb.base.xml;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +37,7 @@ import org.dom4j.io.XMLWriter;
  * @author Marcus Warm
  * @since  2008
  */
-public class XMLDocument {
+public class XMLDocument implements Closeable {
 	private Document doc;
 	
 	/**
@@ -144,8 +145,12 @@ public class XMLDocument {
 	 */
 	public static String loadXML(final String fileName) {
 		final XMLDocument ret = new XMLDocument();
-		ret.loadFile(fileName);
-		return ret.getXML();
+		try {
+			ret.loadFile(fileName);
+			return ret.getXML();
+		} finally {
+			ret.close();
+		}
 	}
 
 	/**
@@ -332,5 +337,10 @@ public class XMLDocument {
 	 */
 	public org.w3c.dom.Document getW3CDocument() throws DocumentException {
 		return new DOMWriter().write(doc);
+	}
+	
+	@Override
+	public void close() {
+		doc = null; // frees memory
 	}
 }
