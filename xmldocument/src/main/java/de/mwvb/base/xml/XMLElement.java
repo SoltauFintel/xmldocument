@@ -103,6 +103,7 @@ public interface XMLElement {
 	 * <p>An exception will be thrown if the XPath statement is incorrect.
 	 * 
 	 * @param pXPath XPath String, e.g. "//addresses/person[@surname='Doe']"
+	 * <p>"//abc" searches in the whole document. ".//abc" searches below the element.</p>
 	 * @return XMLElement Liste
 	 */
 	List<XMLElement> selectNodes(String pXPath);
@@ -271,4 +272,39 @@ public interface XMLElement {
 	 * @return already existing or new created XMLElement
 	 */
 	XMLElement getOrAdd(String elementname);
+	
+	/**
+	 * Returns the XPath expression which will return a node set containing the
+	 * given node such as /a/b/@c. No indexing will be used to restrict the path
+	 * if multiple elements with the same name occur on the path.
+	 */
+	public String getPath();
+	
+	/**
+	 * Returns the relative XPath expression which will return a node set
+	 * containing the given node such as a/b/@c. No indexing will be used to
+	 * restrict the path if multiple elements with the same name occur on the
+	 * path.
+	 * 
+	 * @param context
+	 *            is the parent context from which the relative path should
+	 *            start. If the context is null or the context is not an
+	 *            ancestor of this node then the path will be absolute and start
+	 *            from the document and so begin with the '/' character.
+	 */
+	public String getPath(XMLElement context);
+
+	/**
+	 * Returns parent element. Same as selectSingleNode("..").
+	 * 
+	 * @return XMLElement, is null if the element is the root element.
+	 */
+	XMLElement getParent();
+	
+	/**
+	 * Returns the root element of the document.
+	 * 
+	 * @return not null
+	 */
+	XMLElement getRoot();
 }

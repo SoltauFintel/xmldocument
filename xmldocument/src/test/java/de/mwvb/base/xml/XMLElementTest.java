@@ -75,4 +75,40 @@ public class XMLElementTest {
 			dok.close();
 		}
 	}
+	
+	@Test
+	public void testEquals() {
+		String xml = "<doc><X><Y id='1' data='abc'/></X></doc>";
+		XMLDocument dok = new XMLDocument(xml);
+		XMLElement y;
+		try {
+			y = dok.selectSingleNode("//Y");
+			Assert.assertTrue("Test 1 failed", dok.getChildren().get(0).getChildren().get(0).equals(y));
+			Assert.assertFalse("Test 2 failed", dok.getElement().equals(y));
+		} finally {
+			dok.close();
+		}
+		XMLDocument dok2 = new XMLDocument(xml);
+		try {
+			XMLElement y2 = dok2.selectSingleNode("//Y");
+			// It works only if the elements come from the same XMLDocument.
+			Assert.assertFalse("Test 3 failed", y.equals(y2));
+		} finally {
+			dok2.close();
+		}
+	}
+	
+	@Test
+	public void testGetRoot() {
+		XMLDocument dok = new XMLDocument("<R><A><B><C><D id='1'/><D id='2'><below/></D></C></B></A></R>");
+		try {
+			XMLElement e = dok.byId("2");
+			XMLElement root = dok.getElement();
+			Assert.assertTrue("Test '2' failed", root.equals(e.getRoot()));
+			Assert.assertTrue("root-Test failed", root.equals(root.getRoot()));
+			Assert.assertTrue("1st children Test failed", root.equals(root.getChildren().get(0).getRoot()));
+		} finally {
+			dok.close();
+		}
+	}
 }
