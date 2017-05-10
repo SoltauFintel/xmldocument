@@ -295,7 +295,7 @@ class XMLElementImpl implements XMLElement {
 	
 	@Override
 	public XMLElement getOrAdd(String elementname) {
-		XMLElement ret = selectSingleNode(elementname);
+		XMLElement ret = selectSingleNode("*[name()='" + elementname + "']");
 		return ret == null ? add(elementname) : ret;
 	}
 
